@@ -7,7 +7,8 @@
     <script src="topojson.v2.min.js"></script>
 </head>
 <body>
-  <h2>RoughJS Taiwan Map example with D3.js v4</h2>
+<h2>RoughJS Taiwan Map example with D3.js v4</h2>
+<h3>https://github.com/pshihn/rough</h3>
   <canvas id="canvas" width="960" height="600"></canvas>
 
   <script>
@@ -35,6 +36,7 @@
       const randomStyle = () => {
         return (Math.random() > 0.5 ? 'solid' : '');
       }
+      //https://github.com/jason2506/Taiwan.TopoJSON/blob/master/topojson/counties.json
       d3.json("counties.json", async (error, tw) => {
         if (error) throw error;
         let topo = topojson.feature(tw, tw.objects.map).features;
