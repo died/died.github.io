@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,8 +66,8 @@
                     <div class="column is-full">
                         <div class="field">
                             <div class="control" v-for="input in inputList">
-                                <label :for="input.name" class="label">{{input.name}}</label>
-                                <input v-on:keyup="autoTab($event.target)" :id="input.name" class="input" type="text" maxlength="1" :placeholder="input.name" :title="input.name" v-model="input.value">
+                                <label :for="input.id" class="label">{{input.id}}</label>
+                                <input v-on:keyup="autoTab($event.target)" :id="input.id" class="input" type="text" maxlength="1" :placeholder="input.id" :title="input.name" v-model="input.value">
                             </div>
                         </div>
                     </div>
@@ -145,7 +144,7 @@
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/radar.js"></script>
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
 <script>
     var chart = AmCharts.makeChart("chartdiv", {
         "type": "radar",
@@ -157,12 +156,12 @@
         }],
         "startDuration": 2,
         "graphs": [{
-            "balloonText": "[[value]] litres of beer per year",
+            "balloonText": "[[name]] Score:[[value]]",
             "bullet": "round",
             "lineThickness": 2,
             "valueField": "value"
         }],
-        "categoryField": "name",
+        "categoryField": "id",
         "export": {
             "enabled": false
         }
@@ -172,16 +171,16 @@
         el: "#app",
         data: {
             inputList: [
-                { name: "A", value: null }, { name: "B", value: null },
-                { name: "C", value: null }, { name: "D", value: null },
-                { name: "E", value: null }, { name: "F", value: null },
-                { name: "G", value: null }, { name: "H", value: null },
-                { name: "I", value: null }, { name: "J", value: null },
-                { name: "a", value: null }, { name: "b", value: null },
-                { name: "c", value: null }, { name: "d", value: null },
-                { name: "e", value: null }, { name: "f", value: null },
-                { name: "g", value: null }, { name: "h", value: null },
-                { name: "i", value: null }, { name: "j", value: null }
+                { id: "A", name: "投注性", value: null }, { id: "B", name: "領導性", value: null },
+                { id: "C", name: "冒險性", value: null }, { id: "D", name: "迅速性", value: null },
+                { id: "E", name: "活動性", value: null }, { id: "F", name: "社交性", value: null },
+                { id: "G", name: "思考性", value: null }, { id: "H", name: "細緻性", value: null },
+                { id: "I", name: "條理性", value: null }, { id: "J", name: "穩定性", value: null },
+                { id: "a", name: "意志力", value: null }, { id: "b", name: "成就需求", value: null },
+                { id: "c", name: "統御需求", value: null }, { id: "d", name: "表現慾", value: null },
+                { id: "e", name: "合群性", value: null }, { id: "f", name: "親和需求", value: null },
+                { id: "g", name: "喜新性", value: null }, { id: "h", name: "批判性", value: null },
+                { id: "i", name: "崇拜性", value: null }, { id: "j", name: "受役性", value: null }
             ],
             order: ["A", "b", "B", "c", "C", "D", "E", "d", "F", "e", "f", "G", "H", "I", "g", "J", "h", "i", "j","a"]
         },
@@ -207,10 +206,10 @@
             orderList: function () {
                 let list = [];
                 this.order.forEach(function (id) {
-                    let node = App.inputList.find(x => x.name === id);
-                    let local = { name: node.name, value: node.value };
+                    let node = App.inputList.find(x => x.id === id);
+                    let local = { name: node.name, value: node.value, id:node.id };
                     //if g or h 
-                    if (local.name === 'g' || local.name === 'h') {
+                    if (local.id === 'g' || local.id === 'h') {
                         local.value = local.value > 0 ? 9 - local.value : null;
                     }
                     list.push(local);
