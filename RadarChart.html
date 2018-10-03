@@ -47,7 +47,7 @@
 </head>
 <body>
 <div id="app">
-    <section class="hero">
+    <section class="hero is-fullheight">
         <div class="hero-head">
             <div class="container">
                 <h1 class="title">
@@ -59,9 +59,7 @@
             </div>
         </div>
         <div class="hero-body">
-
             <div class="container">
-
                 <div class="columns is-multiline is-mobile is-centered">
                     <div class="column is-full">
                         <div class="field">
@@ -133,12 +131,15 @@
                         <span>* : g h Reversed on chart.</span>
                     </div>
                 </div>
-
-
             </div>
         </div>
-    </section>
-
+        <div class="hero-foot">
+            <div class="container">
+                <p>如果找不到題目可以試試 <a href="http://www.rsm.ncut.edu.tw/news/process/id/608" target="blank">這邊 </a>，google來的</p>
+                <p>2018 © Died.</p>
+            </div>
+        </div>
+</section>
 </div>
 
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -185,9 +186,6 @@
             order: ["A", "b", "B", "c", "C", "D", "E", "d", "F", "e", "f", "G", "H", "I", "g", "J", "h", "i", "j","a"]
         },
         mounted: function() {
-            //this.queryMonths();
-            //this.adjustWindow();
-
         },
         watch: {
             inputList: {
@@ -200,7 +198,7 @@
         methods: {
             fillChart: function () {
                 let list = this.orderList();
-                chart.dataProvider = list;//this.inputList;
+                chart.dataProvider = list;
                 chart.validateData();
             },
             orderList: function () {
